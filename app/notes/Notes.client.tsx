@@ -67,8 +67,9 @@ function NotesClient() {
         </button>
       </header>
 
- {isModalOpen &&  <Modal onClose={toggleModal}>
-   <NoteForm onClose = { () =>  toggleModal() } /> 
+ {isModalOpen &&  <Modal>
+  
+   <NoteForm onClose = { () => toggleModal() } /> 
    </Modal>}
 
 

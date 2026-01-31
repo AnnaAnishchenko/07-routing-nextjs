@@ -9,7 +9,7 @@ import { useRouter } from "next/navigation";
 
 interface ModalProps {
   children: React.ReactNode;
-  // onClose: () => void;
+
 }
 
 export default function Modal({ children }: ModalProps) {
@@ -23,11 +23,10 @@ export default function Modal({ children }: ModalProps) {
       if (event.key === "Escape") handleClose();
     };
 
-
+    
     document.addEventListener("keydown", handleKeydown);
     document.body.style.overflow = "hidden";
 
-    
     return () => {
       document.removeEventListener("keydown", handleKeydown);
       document.body.style.overflow = "";
