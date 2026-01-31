@@ -1,5 +1,3 @@
-
-
 import { fetchNoteById } from "@/lib/api";
 import css from "./NotePreview.module.css"
 import Modal from "@/components/Modal/Modal";
@@ -14,9 +12,8 @@ async function NotePreview ({params}: NotePreviewProps) {
     const note = await fetchNoteById(id)
 
 
-
 return (
-<Modal onClose={() => {}>
+ <Modal>
 <div className={css.container}>
       <div className={css.item}>
         <div className={css.header}>
@@ -26,7 +23,6 @@ return (
         <p className={css.date}>
           {new Date(note.createdAt).toLocaleDateString()}
         </p>
-        {/* <button onClick={handleClose} className={css.backBtn}   >Close</button> */}
       </div>
     </div>
 </Modal>
