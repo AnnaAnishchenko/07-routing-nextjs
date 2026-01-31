@@ -16,7 +16,7 @@ async function NotePreview ({params}: NotePreviewProps) {
 
 
 return (
-<Modal>
+<Modal onClose={() => {}>
 <div className={css.container}>
       <div className={css.item}>
         <div className={css.header}>
