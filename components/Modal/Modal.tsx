@@ -1,17 +1,27 @@
-import type { ReactNode,  MouseEvent } from "react";
+"use client"
+
+
+import type { MouseEvent } from "react";
 import {  useEffect } from "react";
 import css from "./Modal.module.css";
 import { createPortal } from "react-dom";
 
+import { useRouter } from "next/navigation";
 interface ModalProps {
-  children: ReactNode;
-  onClose: () => void;
+  children: React.ReactNode;
+  
 }
+  
 
-export default function Modal({ children, onClose }: ModalProps) {
+
+export default function Modal({ children }: ModalProps) {
+
+  const router = useRouter();
+
+
   useEffect(() => {
     const handleKeydown = (event: KeyboardEvent) => {
-      if (event.key === "Escape") onClose();
+      if (event.key === "Escape") router.back();
     };
     document.addEventListener("keydown", handleKeydown);
     document.body.style.overflow = "hidden";
@@ -19,10 +29,10 @@ export default function Modal({ children, onClose }: ModalProps) {
       document.removeEventListener("keydown", handleKeydown);
       document.body.style.overflow = "";
     };
-  }, [onClose]);
+  }, [router]);
 
   function handleBackdropClick(event: MouseEvent<HTMLDivElement>) {
-    if (event.target === event.currentTarget) onClose();
+    if (event.target === event.currentTarget) router.back();
   }
 
   return createPortal(
@@ -37,3 +47,5 @@ export default function Modal({ children, onClose }: ModalProps) {
     document.body,
   );
 }
+
+
