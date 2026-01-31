@@ -1,5 +1,5 @@
 import { fetchNoteById } from "@/lib/api";
-import css from "@/components/Modal/Modal.module.css"
+import css from "./NotePreview.module.css"
 import Modal from "@/components/Modal/Modal";
 
 
