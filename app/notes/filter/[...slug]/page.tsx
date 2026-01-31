@@ -4,15 +4,15 @@ import type { NoteTag } from "@/types/note";
 
 
 interface NotesByCategoryProps {
-  params: { tag: string[] };
+  params: { slug: string[] };
 }
 async function NotesByCategory({params}: NotesByCategoryProps) {
-const tagParam = params.tag?.[0] ?? "all";
-  const tag = tagParam === "all" ? undefined : (tagParam as NoteTag);
+const slugParam = params.slug?.[0] ?? "all";
+  const slug = slugParam === "all" ? undefined : (slugParam as NoteTag);
 
-  const data = await fetchNotes("", 1, tag);
+  const data = await fetchNotes("", 1, slug);
 
-  return <NoteList key={tagParam} notes={data.notes} />;
+  return <NoteList key={slugParam} notes={data.notes} />;
 }
 
 export default NotesByCategory;
