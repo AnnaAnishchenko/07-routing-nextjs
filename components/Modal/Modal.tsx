@@ -44,10 +44,12 @@ export default function Modal({ children }: ModalProps) {
       role="dialog"
       aria-modal="true"
     >
-      <div className={css.modal}>{children}</div>
-      <button onClick={handleClose}   >
+      <div className={css.modal}>
+         {/* <button onClick={handleClose}   >
         Close
-      </button>
+      </button> */}
+      {children}</div>
+     
     </div>,
     document.body,
   );

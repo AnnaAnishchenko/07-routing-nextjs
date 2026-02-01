@@ -2,6 +2,7 @@ import { fetchNoteById } from "@/lib/api";
 import css from "./NotePreview.module.css"
 import Modal from "@/components/Modal/Modal";
 
+import CloseButton from "./NotePreview.client";
 
 interface NotePreviewProps {
     params : Promise <{id:string}>
@@ -15,6 +16,9 @@ async function NotePreview ({params}: NotePreviewProps) {
 return (
  <Modal>
 <div className={css.container}>
+
+   <CloseButton />
+   
       <div className={css.item}>
         <div className={css.header}>
           <h2>{note.title}</h2>
@@ -27,7 +31,6 @@ return (
     </div>
 </Modal>
 
- 
    
   );
 
