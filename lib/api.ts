@@ -38,8 +38,8 @@ interface NewNote {
   tag: NoteTag;
 }
 
-export const createNote = async (newNotes: NewNote): Promise<Note> => {
-  const response = await axios.post<Note>("/notes", newNotes);
+export const createNote = async (newNote: NewNote): Promise<Note> => {
+  const response = await axios.post<Note>("/notes", newNote);
   return response.data;
 };
 
@@ -54,10 +54,3 @@ export const fetchNoteById =async (id: Note["id"]): Promise<Note> => {
   return response.data;
 }
 
-// =====
-export const getCategories = async () => {
-  const res = await axios<NoteTag[]>('/tag');
-  return res.data;
-};
-
-// =====

@@ -5,26 +5,30 @@ import css from "./Notes.module.css";
 
 import { useState } from "react";
 import { useDebounce } from "use-debounce";
-
+import { useQuery, keepPreviousData } from "@tanstack/react-query";
 
 import { fetchNotes } from "@/lib/api";
+import type { NoteTag } from "@/types/note";
+
 import SearchBox from "@/components/SearchBox/SearchBox";
 import Pagination from "@/components/Pagination/Pagination";
 import Modal from "@/components/Modal/Modal";
 import NoteForm from "@/components/NoteForm/NoteForm";
 import NoteList from "@/components/NoteList/NoteList";
-import { useQuery, keepPreviousData } from "@tanstack/react-query";
 
 
+interface NotesClientProps {
+tag?: NoteTag;
+}
 
-function NotesClient() {
+function NotesClient({ tag }: NotesClientProps) {
   const [currentPage, setCurrentPage] = useState(1);
   const [searchQuery, setSearchQuery] = useState("");
   const [debounceSearchQuery] = useDebounce (searchQuery, 500);
 
   const { data } = useQuery({
-    queryKey: ["notes", debounceSearchQuery, currentPage],
-    queryFn: () => fetchNotes(debounceSearchQuery, currentPage),
+    queryKey: ["notes", debounceSearchQuery, currentPage, tag],
+    queryFn: () => fetchNotes(debounceSearchQuery, currentPage, tag),
     placeholderData: keepPreviousData,
   });
 
